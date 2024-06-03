@@ -7,6 +7,9 @@ https://www.tensorflow.org/hub/tutorials/movenet
 
 let video, bodypose, pose, keypoint, detector;
 let poses = [];
+function preload(){	
+	rightEarImg= loadImage("upload_bc549284c3544930bf04fef1eb154c5d.gif")	
+}
 
 async function init() {
   const detectorConfig = {
@@ -67,10 +70,11 @@ function drawSkeleton() {
       }
     }
     // shoulder to shoulder
-    partA = pose.keypoints[5];
-    partB = pose.keypoints[6];
+    pose = pose[i];
+    partA = pose.keypoints[1];
+    partB = pose.keypoints[2];
     if (partA.score > 0.1 && partB.score > 0.1) {
-      line(partA.x, partA.y, partB.x, partB.y);
+      line(rightEarImg,partA.x, partA.y, 50, 50);
       
     }
     // hip to hip
@@ -87,21 +91,7 @@ function drawSkeleton() {
       line(partA.x, partA.y, partB.x, partB.y);
       
     }
-    partA = pose.keypoints[6];
-    partB = pose.keypoints[12];
-    if (partA.score > 0.1 && partB.score > 0.1) {
-      line(partA.x, partA.y, partB.x, partB.y);
-      
-    }
-    // hip to foot
-    for (j = 11; j < 15; j++) {
-      if (pose.keypoints[j].score > 0.1 && pose.keypoints[j + 2].score > 0.1) {
-        partA = pose.keypoints[j];
-        partB = pose.keypoints[j + 2];
-        line(partA.x, partA.y, partB.x, partB.y);
-        
-      }
-    }
+    
   }
 }
 
