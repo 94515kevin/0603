@@ -61,16 +61,20 @@ function draw() {
 function drawSkeleton() {
   // Draw all the tracked landmark points
   
-   for(let i = 0;i<poses.length;i++){
-    pose = poses[i];
-    partA = pose.keypoints[1];
-    partB = pose.keypoints[2];
-    if (partA.score > 0.1 && partB.score > 0.1) {
-      image(rightEarImg,partA.x, partA.y, 50, 50);
-      
+  function drawSkeleton() {
+    // 绘制所有跟踪到的关键点
+    for (let i = 0; i < poses.length; i++) {
+      pose = poses[i];
+      for (let j = 0; j < pose.keypoints.length; j++) {
+        keypoint = pose.keypoints[j];
+        if (keypoint.score > 0.1) {
+          if (j === 4) { // 索引 4 对应右耳
+            image(rightEarImg, keypoint.x, keypoint.y, 50, 50);
+          }
+        }
+      }
     }
-   
-    }
+  }
     
   
 }
