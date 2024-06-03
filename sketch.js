@@ -7,6 +7,7 @@ https://www.tensorflow.org/hub/tutorials/movenet
 
 let video, bodypose, pose, keypoint, detector;
 let poses = [];
+let rightEarImg;
 function preload(){	
 	rightEarImg= loadImage("upload_bc549284c3544930bf04fef1eb154c5d.gif")	
 }
@@ -61,7 +62,7 @@ function drawSkeleton() {
   // Draw all the tracked landmark points
   
    for(let i = 0;i<poses.length;i++){
-    pose = pose[i];
+    pose = poses[i];
     partA = pose.keypoints[1];
     partB = pose.keypoints[2];
     if (partA.score > 0.1 && partB.score > 0.1) {
