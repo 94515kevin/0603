@@ -65,7 +65,7 @@ function drawSkeleton() {
     partA = pose.keypoints[1];
     partB = pose.keypoints[2];
     if (partA.score > 0.1 && partB.score > 0.1) {
-      line(rightEarImg,partA.x, partA.y, 50, 50);
+      image(rightEarImg,partA.x, partA.y, 50, 50);
       
     }
    
